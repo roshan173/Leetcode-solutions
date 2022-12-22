@@ -16,7 +16,7 @@ class Solution {
 /*
 
 for 3 points: 
-we need only one line if the slope between p1 - p2 = p2 - p3
+we need only one line if the slope between p1(x1, y1) to p2(x2, y2) == p2(x2, y2) to p3(x3, y3)
 y3 - y2       y2 - y1
 ---------  =  -------
 x3 - x2       x2 - x1
