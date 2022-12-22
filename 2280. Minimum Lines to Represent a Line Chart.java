@@ -1,4 +1,41 @@
 class Solution {
+    public int minimumLines(int[][] prices) {
+        Arrays.sort(prices, (a, b) -> a[0]-b[0]);        
+        int count = 0;
+        if (prices.length > 1) count++;
+        for (int i=1; i<prices.length-1; i++) {
+            int[] p1 = prices[i-1];
+            int[] p2 = prices[i];
+            int[] p3 = prices[i+1];
+            if ((p3[1] - p2[1]) * (p2[0] - p1[0]) != (p3[0] - p2[0]) * (p2[1] - p1[1])) count++;
+        }
+        return count;
+    }
+}
+
+/*
+
+for 3 points: 
+we need only one line if the slope between p1 - p2 = p2 - p3
+y3 - y2       y2 - y1
+---------  =  -------
+x3 - x2       x2 - x1
+
+
+Intution:
+[[3,4],[1,2],[7,8],[2,3]]
+-> sort the stockPrices by day - [[1,2], [2,3], [3,4], [7,8]]
+-> if : there is only one day - no line is required
+   else : compare slope of i - 1, i with slope of i, i + 1
+            if they are not the same, increase count by one;
+ */
+
+
+
+/*
+//previous approach
+
+class Solution {
     public int minimumLines(int[][] stockPrices) {
         Arrays.sort(stockPrices, (a, b) -> a[0]-b[0]);        
         int count = 0;
@@ -26,23 +63,5 @@ class Solution {
         return getGcd(b%a, a);
     }
 }
+*/
 
-/*
-y = mx + c
-       y2 - y1
- m  =  -------
-       x2 - x1
-
-Intution:
-[[3,4],[1,2],[7,8],[2,3]]
--> sort the stockPrices by day - [[1,2], [2,3], [3,4], [7,8]]
--> if : there is only one day - no line is required
-   else : calculate slope of i - 1, i and compare it with slope of i-2, i - 1
-            if they are not the same, increase count by one;
-Algo : 
-    -> current_slope = MAX_VALUE;
-    -> for i = 1 to n
-    -> newSlope = calculate slope of i-1, i
-    -> if newSlope != current_slope, ans++ and  current_slope = newSlope
-    -> else do nothing
- */
