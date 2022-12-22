@@ -30,6 +30,15 @@ Intution:
             if they are not the same, increase count by one;
  */
 
+/*
+Something to remember: 
+To check -> A/B == C/D
+int g1 = gcd(A,B), g2 = gcd(C,D);
+check -> (A/g1 == C/g2 && B/g1==D/g2)
+If this condition is true means the [ A/B == C/D ] 
+-> This implementation will never give error for division comparison.
+*/
+
 
 
 /*
